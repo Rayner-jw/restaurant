@@ -3,7 +3,7 @@
 	try{
 		$pdo = new PDO("mysql:host=localhost;dbname=restaurant_bootstrap","root","");
 	}catch(PDOException $e){
-		echo "数据库连接失败：".$e->getMessage();
+		echo "杩炴帴閿欒".$e->getMessage();
 		exit;
 	}
 ?>
