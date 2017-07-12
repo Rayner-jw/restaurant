@@ -1,0 +1,31 @@
+//建数据库
+	create database if not exists restaurant_bootstrap
+//建表
+	CREATE TABLE IF NOT EXISTS `foods` (
+	  `food_id` int(11) AUTO_INCREMENT PRIMARY KEY,
+	  `food_name` varchar(50) NOT NULL,
+	  `food_type` varchar(50) NOT NULL,
+	  `food_price` double NOT NULL,
+	  `food_image` varchar(100) DEFAULT NULL
+	)DEFAULT CHARSET=utf8;
+	CREATE TABLE IF NOT EXISTS `order_tables` (
+	  `o_t_orderNum` int(11) PRIMARY KEY,
+	  `o_t_num` int(11) NOT NULL
+	)DEFAULT CHARSET=utf8;
+	CREATE TABLE IF NOT EXISTS `ordered_list` (
+	  `o_l_id` int(11) AUTO_INCREMENT PRIMARY KEY ,
+	  `ordered_food_id` int(11) NOT NULL,
+	  `ordered_food_num` int(11) NOT NULL,
+	  `ordered_food_prices` double NOT NULL,
+	  `ordered_o_t_orderNum` int(11) NOT NULL,
+	  FOREIGN KEY (`ordered_food_id`) REFERENCES `foods` (`food_id`),
+	  FOREIGN KEY (`ordered_o_t_orderNum`) REFERENCES `order_table` (`o_t_orderNum`)
+	)DEFAULT CHARSET=utf8;
+	CREATE TABLE IF NOT EXISTS `bills` (
+	  `bill_id` int(11) AUTO_INCREMENT PRIMARY KEY ,
+	  `b_o_t_orderNum` int(11) NOT NULL,
+	  `bill_o_t_num` int(11) NOT NULL,
+	  `bill_prices` double NOT NULL,
+	  `bill_time` DATETIME NOT NULL,
+	  FOREIGN KEY (`b_o_t_orderNum`) REFERENCES `order_tables` (`o_t_orderNum`)
+	)DEFAULT CHARSET=utf8;
